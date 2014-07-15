@@ -1,0 +1,21 @@
+apply plugin: 'scala'
+apply plugin: 'idea'
+
+repositories{
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies{
+    compile 'org.slf4j:slf4j-simple:1.7.7'
+    compile "org.scala-lang:scala-library:2.11.1"
+    compile "org.scala-lang:scala-compiler:2.11.1"
+    compile "com.typesafe.scala-logging:scala-logging_2.11:3.0.0"
+    testCompile "org.scalatest:scalatest_2.11:2.2.0	"
+}
+
+task run(type: JavaExec, dependsOn: classes) {
+    main = 'Main'
+    classpath sourceSets.main.runtimeClasspath
+    classpath configurations.runtime
+}
